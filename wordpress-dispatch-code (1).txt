@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Header Concepts | Premium US Freight Dispatch</title>
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        :root {
+            --primary: #0A192F;
+            --secondary: #FF9F1C;
+            --slate: #1E293B;
+            --light-bg: #F8F9FA;
+            --text-dark: #0F172A;
+            --text-light: #F8F9FA;
+            --text-muted: #64748B;
+            --success: #10B981;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Fixed Global Header */
+        .global-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand-logo {
+            color: var(--text-light);
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+        .brand-logo span {
+            color: var(--secondary);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        .header-cta {
+            background-color: var(--secondary);
+            color: var(--primary) !important;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-cta:hover {
+            transform: translateY(-1px);
+            opacity: 0.95;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #0A192F 0%, #1E293B 100%);
+            color: var(--text-light);
+            padding: 160px 5% 80px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .hero-content {
+            flex: 1;
+            max-width: 650px;
+        }
+        .hero-content h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 span {
+            color: var(--secondary);
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #94A3B8;
+            margin-bottom: 30px;
+        }
+        .hero-btn {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            box-shadow: 0 4px 14px rgba(255, 159, 28, 0.3);
+        }
+
+        /* Value Props */
+        .value-props {
+            padding: 60px 5%;
+            background-color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .prop-card {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+        .prop-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .prop-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Pricing & Equipment */
+        .services-section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+        .price-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 320px;
+            text-align: left;
+            position: relative;
+            border: 1px solid #E2E8F0;
+        }
+        .price-card.popular {
+            border: 2px solid var(--secondary);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .price-card h4 {
+            font-size: 1.25rem;
+            color: var(--slate);
+            margin-bottom: 10px;
+        }
+        .price-amount {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .price-features {
+            list-style: none;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .price-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .price-features li::before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Onboarding Form */
+        .onboarding-section {
+            background-color: white;
+            padding: 80px 5%;
+        }
+        .form-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--slate);
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background: white;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: 2px solid var(--secondary);
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500 !important;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .file-upload-box {
+            border: 2px dashed #CBD5E1;
+            padding: 15px;
+            text-align: center;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .file-upload-box:hover {
+            border-color: var(--secondary);
+        }
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: var(--slate);
+        }
+        .success-msg {
+            display: none;
+            background-color: #DEF7EC;
+            color: #03543F;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .global-footer {
+            background-color: var(--primary);
+            color: #94A3B8;
+            padding: 40px 5%;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid #1E293B;
+        }
+        .footer-disclaimer {
+            max-width: 800px;
+            margin: 15px auto 0 auto;
+            line-height: 1.5;
+            color: #64748B;
+        }
+
+        /* Responsive Layout styles */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-section { flex-direction: column; text-align: center; padding-top: 120px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .form-container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Global Header -->
+    <header class="global-header">
+        <div class="brand-logo">Global Header <span>Concepts</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#onboarding">Onboarding</a></li>
+        </ul>
+        <a href="tel:+18005550199" class="header-cta">
+            <span>📞</span> Call Operations: +1 (800) 555-0199
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <h1>We Optimize Your Lanes.<br><span>You Command The Road.</span></h1>
+            <p>Premium independent freight dispatching engineered for professional US owner-operators. We eliminate deadhead miles, secure elite spot-market rates, and clear your paperwork seamlessly.</p>
+            <a href="#onboarding" class="hero-btn">Initiate Onboarding Protocol ➔</a>
+        </div>
+    </section>
+
+    <!-- Value Matrix Section -->
+    <section class="value-props">
+        <div class="prop-card">
+            <h3><span>🛡️</span> Financial Protection</h3>
+            <p>Every broker is credit-checked in real-time before booking to secure your factoring company approvals instantly.</p>
+        </div>
+        <div class="prop-card">
+            <h3><span>🛑</span> Zero Forced Dispatch</h3>
+            <p>Complete route autonomy. If a freight lane or spot market rate doesn't fit your profit margins, we pivot instantly.</p>
+        </div>
+        <div class="prop-card">
+            <h3><span>📊</span> Direct Asset Performance</h3>
+            <p>Skip the generic call centers. Your truck is assigned a dedicated dispatcher specializing in your asset class.</p>
+        </div>
+    </section>
+
+    <!-- Services & Pricing -->
+    <section class="services-section" id="services">
+        <h2 class="section-title">Transparent Fleet Structures</h2>
+        <p class="section-subtitle">No hidden operational subscription fees. Our bottom line scales strictly based on your truck's successful delivery earnings.</p>
+        
+        <div class="pricing-container">
+            <div class="price-card popular">
+                <div class="popular-badge">Most Flexible</div>
+                <h4>Gross Percentage Plan</h4>
+                <div class="price-amount">8% <span style="font-size:1rem; color:var(--text-muted);">/ Gross Load</span></div>
+                <ul class="price-features">
+                    <li>Dynamic scaling with market peaks</li>
+                    <li>Premium OTR spot lane routing</li>
+                    <li>Full rate confirmation control</li>
+                    <li>24/7 back-office support</li>
+                </ul>
+            </div>
+            <div class="price-card">
+                <h4>Fixed Weekly Retainer</h4>
+                <div class="price-amount">$200 <span style="font-size:1rem; color:var(--text-muted);">/ Wk Per Truck</span></div>
+                <ul class="price-features">
+                    <li>Fixed, predictable overhead cost</li>
+                    <li>High-utilization regional routing</li>
+                    <li>Dedicated dispatcher priority</li>
+                    <li>Broker setup packets managed</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Onboarding Portal -->
+    <section class="onboarding-section" id="onboarding">
+        <h2 class="section-title" style="text-align:center;">Carrier Onboarding Portal</h2>
+        <p class="section-subtitle">Execute our secure intake fields below to activate your professional carrier profile within 2 business hours.</p>
+        
+        <div class="form-container">
+            <form id="dispatchForm" onsubmit="event.preventDefault(); document.getElementById('successBlock').style.display = 'block';">
+                <div class="form-group">
+                    <label for="carrierName">Legal Carrier Entity Name</label>
+                    <input type="text" id="carrierName" placeholder="e.g., J&K Trucking LLC" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mcNumber">Active MC / USDOT Number</label>
+                    <input type="text" id="mcNumber" placeholder="e.g., MC# 1234567" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactEmail">Secure Operational Email</label>
+                    <input type="email" id="contactEmail" placeholder="ops@yourcompany.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Trailer Equipment Configuration</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox"> Dry Van</label>
+                        <label class="checkbox-label"><input type="checkbox"> Refrigerated (Reefer)</label>
+                        <label class="checkbox-label"><input type="checkbox"> Flatbed / Stepdeck</label>
+                        <label class="checkbox-label"><input type="checkbox"> Power Only</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Mandatory Compliance Document Uploads</label>
+                    <div style="display:grid; gap:10px; margin-top:5px;">
+                        <div class="file-upload-box">📄 Click to Upload MC Authority Letter</div>
+                        <div class="file-upload-box">📄 Click to Upload Completed W-9 Form</div>
+                        <div class="file-upload-box">📄 Click to Upload Certificate of Insurance (COI)</div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top:25px;">
+                    <label class="checkbox-label" style="align-items:flex-start;">
+                        <input type="checkbox" style="margin-top:4px;" required>
+                        <span>I authorize Global Header Concepts to request rate sheets, track transit lines, and execute broker rate confirmations on my company's legal behalf.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Authorize & Transmit Profile ➔</button>
+                
+                <div class="success-msg" id="successBlock">
+                    ✓ Success: Onboarding Packet Securely Transmitted. Our logistics desk will contact you via phone within 2 hours.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <p>&copy; 2026 Global Header Concepts LLC. All Rights Reserved.</p>
+        <p class="footer-disclaimer">Disclaimer: Global Header Concepts functions exclusively as an independent operational dispatch utility representing motor carriers. We are not a licensed freight broker and do not contract cargo directly from commercial shippers for third-party transportation allocation.</p>
+    </footer>
+
+</body>
+</html>
